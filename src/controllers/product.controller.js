@@ -44,3 +44,14 @@ export const createNewProduct = async (req, res) => {
 }
 
 
+// Obtener producto por ID
+export const getProductById = async (req, res) => {
+    const { id } = req.params;
+
+    const pool = await getConnection();
+    const result = await pool.request()
+        .input('id', sql.Int, id)
+        .query(queris.getProductById);
+
+    res.send(result.recordset);
+}
