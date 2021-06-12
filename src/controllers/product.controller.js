@@ -50,8 +50,31 @@ export const getProductById = async (req, res) => {
 
     const pool = await getConnection();
     const result = await pool.request()
-        .input('id', sql.Int, id)
+        .input('Id', sql.Int, id)
         .query(queris.getProductById);
 
     res.send(result.recordset);
 }
+
+// ELIMINANDO UN PRODUCTO
+export const deleteOneProduct = async (req, res) => {
+    const { id } = req.params;
+
+    const pool = await getConnection();
+    const result = await pool.request()
+        .input('Id', sql.Int, id)
+        .query(queris.deleteProduct);
+
+    res.send(result);
+}
+
+export const getTotalProducts = async (req, res) => {
+
+    const pool = await getConnection();
+    const result = await pool
+        .request()
+        .query(queris.getTotalProducts);
+
+    res.send(result.recordset);
+}
+
