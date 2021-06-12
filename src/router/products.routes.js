@@ -9,7 +9,7 @@ const router = Router()
 
 router.get('/products', getProducts)
 
-router.post('/products')
+router.post('/products', createNewProduct)
 
 router.get('/products')
 
