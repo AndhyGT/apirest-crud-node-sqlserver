@@ -1,13 +1,21 @@
-import { getConnection, sql } from '../database/connection'
+import { getConnection, sql, queris } from '../database';
 
+// Obtener Producto
 export const getProducts = async (req, res) => {
+    try {
 
-    const pool = await getConnection();
-    const result = await pool.request().query('SELECT * FROM Products');
+        const pool = await getConnection();
+        const result = await pool.request().query(queris.getAllProduct);
 
-    res.json(result.recordset)
+        res.json(result.recordset)
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
 };
 
+
+// Crear Producto
 export const createNewProduct = async (req, res) => {
 
     const { name, description } = req.body;
@@ -19,11 +27,20 @@ export const createNewProduct = async (req, res) => {
 
     if (quantity == null) quantity = 0;
 
-    const pool = await getConnection();
+    try {
+        const pool = await getConnection();
 
-    await pool.request().input("name", sql.VarChar, 'PRODUCT TEST').query('INSERT INTO Products (name) VALUES (@name)');
+        await pool.request()
+            .input("name", sql.VarChar, name)
+            .input("description", sql.Text, description)
+            .input("quantity", sql.Int, quantity)
+            .query(queris.addNewProduct);
 
-    res.json('new Product');
+        res.json({ name, description, quantity });
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
 }
 
 
