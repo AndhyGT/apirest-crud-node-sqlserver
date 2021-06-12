@@ -1,0 +1,45 @@
+@api = http://localhost:4000/products
+
+
+// OBTENER TODO LOS PRODUCTOS
+###
+GET {{api}}
+
+
+// CREAR UN NUEVO PRODUCTO
+###
+POST {{api}}
+Content-Type: application/json
+
+{
+    "name": "Producto 10",
+    "description": "Interl Core 7",
+    "quantity": 42
+}
+
+
+
+// OBTENER PRODUCTO POR ID 
+###
+GET {{api}}/10
+
+
+// ELIMINAR UN PRODUCTO
+###
+DELETE {{api}}/11
+
+
+// OBTENER EL TOTAL DEL PRODUCT
+###
+GET {{api}}/count
+
+// ACTUALIZAR PRODUCTO POR ID
+###
+PUT  {{api}}/10
+Content-Type: application/json
+
+{
+    "name": "Mouse Razer :3",
+    "description": "Mouse Gamming For Fornite",
+    "quantity": 10
+}
