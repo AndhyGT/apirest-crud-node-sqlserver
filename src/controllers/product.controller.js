@@ -78,3 +78,21 @@ export const getTotalProducts = async (req, res) => {
     res.send(result.recordset);
 }
 
+export const updateProductById = async (req, res) => {
+    const { name, description, quantity } = req.body;
+    const { id } = req.params;
+
+    if (name === null || description === null || quantity === null) {
+        return res.status(400).json({ msg: 'Bad Request. Please Fill all fields' });
+    }
+
+    const pool = await getConnection();
+    const result = await pool.request()
+        .input('name', sql.VarChar, name)
+        .input('description', sql.Text, description)
+        .input('quantity', sql.Int, quantity)
+        .input('Id', sql.Int, id)
+        .query(queris.updateProductById);
+
+    res.send(result)
+}

@@ -5,7 +5,8 @@ import {
     createNewProduct,
     getProductById,
     deleteOneProduct,
-    getTotalProducts
+    getTotalProducts,
+    updateProductById
 } from '../controllers/product.controller'
 
 const router = Router()
@@ -20,6 +21,6 @@ router.get('/products/:id', getProductById)
 
 router.delete('/products/:id', deleteOneProduct)
 
-router.put('/products')
+router.put('/products/:id', updateProductById)
 
 export default router
