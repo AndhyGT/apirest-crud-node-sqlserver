@@ -1,5 +1,5 @@
 ## APIREST CRUD NODE - SQL SERVER
-#### Recurde que deve ejecutar '''npm install''' para recontruir los modulos de NODE.JS
+#### Recurde que debe ejecutar '''npm install''' para recontruir los modulos de NODE.JS
 
 ### ===> Obtener todo los productos
 ![imagen](https://user-images.githubusercontent.com/57696767/121765672-d2665c80-cb09-11eb-99b5-df52ca2d99fe.png)
